@@ -32,8 +32,8 @@
     "@types/react": "17.0.20",
     "@vitejs/plugin-react-refresh": "1.3.6",
     "autoprefixer": "10.3.4",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "7.32.0",
-    "husky": "7.0.2",
     "lint-staged": "11.2.6",
     "postcss": "8.3.6",
     "postcss-nested": "5.0.6",
@@ -43,5 +43,10 @@
     "vite": "2.6.13",
     "vite-plugin-checker": "0.3.4",
     "vite-tsconfig-paths": "3.3.14"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
