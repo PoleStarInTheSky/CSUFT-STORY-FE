@@ -2,25 +2,11 @@
   "name": "vite-react-tailwind-template",
   "version": "0.0.0",
   "scripts": {
-    "prepare": "husky install",
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
     "format": "prettier --write \"src/**/*.ts\" ",
     "lint": "eslint ./src --fix"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,css,scss,less}": [
-      "prettier --ignore-path ./.prettierignore --write "
-    ],
-    "*.{js,jsx,ts,tsx}": [
-      "eslint"
-    ]
   },
   "dependencies": {
     "react": "17.0.2",
