@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function Head() {
+  //TODO: 从图库下载图片，每次随机抽取一张
   return (
     <div>
       <div className="w-full relative mt-6 group">

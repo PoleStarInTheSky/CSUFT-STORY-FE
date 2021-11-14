@@ -6,6 +6,10 @@ module.exports = {
 
   theme: {
     extend: {
+      backgroundImage: {
+        login: "url('/public/img/login.png')",
+        register: "url('/public/img/register.png')",
+      },
       screens: {
         'light-mode': { raw: '(prefers-color-scheme: light)' },
         'dark-mode': { raw: '(prefers-color-scheme: dark)' },
@@ -35,10 +39,13 @@ module.exports = {
           default: '#18A058FF',
           deep: '#0C7A43FF',
           shallow: '#36AD6AFF',
+          shallower: '#b7eb8f',
+          exshallow: '#f6ffed',
         },
-        gray$: {
-          default: '#ddd',
-        },
+      },
+      flex: {
+        2: 2,
+        3: 3,
       },
     },
   },
