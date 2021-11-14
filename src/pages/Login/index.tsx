@@ -3,7 +3,7 @@ import React from 'react'
 export default function Login() {
   return (
     <div className="flex-1">
-      <div className="bg-login bg-cover bg-no-repeat w-full h-full mt-2 flex items-center justify-center">
+      <div className="bg-login bg-cover bg-no-repeat w-full h-full flex items-center justify-center">
         <div className="w-80 h-80 sm:w-96 sm:h-96 bg-white rounded-3xl shadow-lg">
           <p className="text-center pt-8 text-primary-default font-bold text-xl">
             欢迎回到林大故事
