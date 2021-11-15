@@ -6,9 +6,13 @@ module.exports = {
 
   theme: {
     extend: {
+      keyframes: {
+        appear: { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
+      },
+      animation: { 'appear-defalut': 'appear .3s ease-in 1' },
       backgroundImage: {
-        login: "url('/public/img/login.png')",
-        register: "url('/public/img/register.png')",
+        login: "url('/img/login.png')",
+        register: "url('/img/register.png')",
       },
       screens: {
         'light-mode': { raw: '(prefers-color-scheme: light)' },
@@ -35,6 +39,9 @@ module.exports = {
         auto: 'auto',
       },
       colors: {
+        gold: {
+          dark: '#be9656',
+        },
         primary: {
           default: '#18A058FF',
           deep: '#0C7A43FF',
@@ -54,5 +61,5 @@ module.exports = {
       display: ['group-hover'],
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
 }

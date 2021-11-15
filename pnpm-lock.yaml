@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@innei-util/eslint-config-react-ts': 0.1.2
   '@innei-util/prettier': 0.1.4
+  '@tailwindcss/line-clamp': ^0.2.2
   '@types/react': 17.0.20
   '@vitejs/plugin-react-refresh': 1.3.6
   autoprefixer: 10.3.4
@@ -24,6 +25,7 @@ specifiers:
   vite-tsconfig-paths: 3.3.14
 
 dependencies:
+  '@tailwindcss/line-clamp': 0.2.2_tailwindcss@2.2.15
   axios: 0.24.0
   history: 5.1.0
   react: 17.0.2
@@ -455,6 +457,14 @@ packages:
       picomatch: 2.3.0
     dev: true
 
+  /@tailwindcss/line-clamp/0.2.2_tailwindcss@2.2.15:
+    resolution: {integrity: sha1-BYQ8AEvwaTU6DEP534zDpgFiUrg=, tarball: '@tailwindcss/line-clamp/download/@tailwindcss/line-clamp-0.2.2.tgz'}
+    peerDependencies:
+      tailwindcss: '>=2.0.0 || >=3.0.0-alpha.1'
+    dependencies:
+      tailwindcss: 2.2.15_4dc2d3db2b138fb8fa7d5c7b0c803aba
+    dev: false
+
   /@types/eslint/7.28.0:
     resolution: {integrity: sha1-fkHySB0wHGjhT0g/4QsBd1POjVo=, tarball: '@types/eslint/download/@types/eslint-7.28.0.tgz'}
     dependencies:
@@ -495,7 +505,7 @@ packages:
     dev: true
 
   /@typescript-eslint/eslint-plugin/4.31.0_d9c1bc16c4e2aea4e8e177a5961dd3bf:
-    resolution: {integrity: sha1-nD+m9EuteJqWJCatlRtUaVvTr2s=, tarball: '@typescript-eslint/eslint-plugin/download/@typescript-eslint/eslint-plugin-4.31.0.tgz?cache=0&sync_timestamp=1636858328483&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Feslint-plugin%2Fdownload%2F%40typescript-eslint%2Feslint-plugin-4.31.0.tgz'}
+    resolution: {integrity: sha1-nD+m9EuteJqWJCatlRtUaVvTr2s=, tarball: '@typescript-eslint/eslint-plugin/download/@typescript-eslint/eslint-plugin-4.31.0.tgz'}
     engines: {node: ^10.12.0 || >=12.0.0}
     peerDependencies:
       '@typescript-eslint/parser': ^4.0.0
@@ -538,7 +548,7 @@ packages:
     dev: true
 
   /@typescript-eslint/parser/4.31.0_eslint@7.32.0+typescript@4.4.3:
-    resolution: {integrity: sha1-h7fNFrJLkXDHdZXYsTY/gEcSHgU=, tarball: '@typescript-eslint/parser/download/@typescript-eslint/parser-4.31.0.tgz?cache=0&sync_timestamp=1636858328413&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Fparser%2Fdownload%2F%40typescript-eslint%2Fparser-4.31.0.tgz'}
+    resolution: {integrity: sha1-h7fNFrJLkXDHdZXYsTY/gEcSHgU=, tarball: '@typescript-eslint/parser/download/@typescript-eslint/parser-4.31.0.tgz?cache=0&sync_timestamp=1636966920341&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Fparser%2Fdownload%2F%40typescript-eslint%2Fparser-4.31.0.tgz'}
     engines: {node: ^10.12.0 || >=12.0.0}
     peerDependencies:
       eslint: ^5.0.0 || ^6.0.0 || ^7.0.0
@@ -2490,7 +2500,7 @@ packages:
     dev: true
 
   /ms/2.1.2:
-    resolution: {integrity: sha1-0J0fNXtEP0kzgqjrPM0YOHKuYAk=, tarball: ms/download/ms-2.1.2.tgz}
+    resolution: {integrity: sha1-0J0fNXtEP0kzgqjrPM0YOHKuYAk=, tarball: ms/download/ms-2.1.2.tgz?cache=0&sync_timestamp=1632883299868&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fms%2Fdownload%2Fms-2.1.2.tgz}
     dev: true
 
   /mute-stream/0.0.7:
@@ -2665,7 +2675,7 @@ packages:
     dev: true
 
   /parse-json/4.0.0:
-    resolution: {integrity: sha1-vjX1Qlvh9/bHRxhPmKeIy5lHfuA=, tarball: parse-json/download/parse-json-4.0.0.tgz?cache=0&sync_timestamp=1636012572156&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fparse-json%2Fdownload%2Fparse-json-4.0.0.tgz}
+    resolution: {integrity: sha1-vjX1Qlvh9/bHRxhPmKeIy5lHfuA=, tarball: parse-json/download/parse-json-4.0.0.tgz?cache=0&sync_timestamp=1636945102125&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fparse-json%2Fdownload%2Fparse-json-4.0.0.tgz}
     engines: {node: '>=4'}
     dependencies:
       error-ex: 1.3.2

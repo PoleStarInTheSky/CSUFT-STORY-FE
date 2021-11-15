@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Register() {
   return (
-    <div className="flex-1">
+    <div className="flex-1 animate-appear-defalut">
       <div className="bg-register bg-cover bg-no-repeat w-full h-full flex items-center justify-center">
         <div className="w-80 h-80 sm:w-96 sm:h-96 bg-white rounded-3xl shadow-lg">
           <p className="text-center pt-8 text-primary-default font-bold text-xl">

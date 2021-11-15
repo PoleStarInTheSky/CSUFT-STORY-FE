@@ -3,7 +3,7 @@ import React from 'react'
 export default function Navbar() {
   return (
     <>
-      <div className="w-full py-6 sticky z-100 top-0 h-10 hidden md:flex items-center justify-center font-light text-lg ">
+      <div className="w-full py-6 sticky z-100 top-0 h-10 hidden md:flex items-center justify-center font-light text-lg bg-white">
         <div className="flex-1">
           <div className="flex items-center justify-start md:pl-10 lg:pl-16 ">
             <span className="inline-block p-1.5 font-normal bg-gray-500 text-white hover:bg-primary-default duration-300">

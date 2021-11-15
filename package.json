@@ -9,6 +9,7 @@
     "lint": "eslint ./src --fix"
   },
   "dependencies": {
+    "@tailwindcss/line-clamp": "^0.2.2",
     "axios": "^0.24.0",
     "history": "5",
     "react": "17.0.2",

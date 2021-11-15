@@ -11,7 +11,8 @@ function App() {
       <div className="dark:bg-gray-900 dark:text-white h-screen w-screen overflow-auto flex flex-col">
         <Navbar></Navbar>
         <Routes>
-          <Route path="/" element={<Login />}></Route>
+          <Route path="/" element={<Homepage />}></Route>
+          <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/write" element={<Write />}></Route>
         </Routes>
