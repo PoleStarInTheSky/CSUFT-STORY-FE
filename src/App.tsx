@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       <div className="dark:bg-gray-900 dark:text-white h-screen w-screen overflow-auto flex flex-col">
-        <Navbar></Navbar>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />}></Route>
           <Route path="/login" element={<Login />}></Route>

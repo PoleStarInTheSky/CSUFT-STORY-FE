@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react'
 
-//keepOnUnmount表示当前组件卸载后，是否保留更改
+//keepOnUnmount表示当前组件卸载后，是否回到原来的标题
 export default function useDocumentTitle(title: string, keepOnUnmount = false) {
   //useRef后在整个生命周期中都不会变化
-  const oldTitle = useRef(document.title).current
 
+  const oldTitle = useRef(document.title).current
+  console.log(oldTitle)
   //组件渲染时，把title设置为自定义的
   useEffect(() => {
     document.title = title

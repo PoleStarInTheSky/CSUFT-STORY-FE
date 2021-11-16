@@ -1,6 +1,7 @@
 import React from 'react'
-
+import useDocumentTitle from '../../utils/hooks/useDocumentTitle'
 export default function Register() {
+  useDocumentTitle('注册')
   return (
     <div className="flex-1 animate-appear-defalut">
       <div className="bg-register bg-cover bg-no-repeat w-full h-full flex items-center justify-center">

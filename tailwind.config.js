@@ -6,6 +6,9 @@ module.exports = {
 
   theme: {
     extend: {
+      width: {
+        '7/10screen': '70vw',
+      },
       keyframes: {
         appear: { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
       },
