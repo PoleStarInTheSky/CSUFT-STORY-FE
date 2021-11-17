@@ -7,7 +7,7 @@ export default function Homepage() {
   return (
     <div>
       <Head />
-      <div className="flex items-start justify-center">
+      <div className="flex items-start justify-center w-screen ">
         <Posts />
         <Sideweather />
       </div>

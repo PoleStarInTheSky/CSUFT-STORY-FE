@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import useToggle from '../../utils/hooks/useToggle'
 import { Link } from 'react-router-dom'
 export default function Dropdown() {
-  const [show, toggleShow] = useToggle(true)
+  const [show, toggleShow] = useToggle(false)
   return (
     <>
       <div className="flex items-center justify-between md:hidden h-10 sticky z-100 top-0 bg-white">

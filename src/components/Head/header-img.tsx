@@ -10,7 +10,7 @@ export default function HeaderImg({
   return (
     <>
       <img
-        className="w-full object-cover h-60 md:h-72  lg:h-96 animate-appear-defalut"
+        className="w-screen object-cover h-60 md:h-72  lg:h-96 animate-appear-defalut"
         src={url}
         alt={name}
       />

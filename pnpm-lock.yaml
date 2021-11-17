@@ -505,7 +505,7 @@ packages:
     dev: true
 
   /@typescript-eslint/eslint-plugin/4.31.0_d9c1bc16c4e2aea4e8e177a5961dd3bf:
-    resolution: {integrity: sha1-nD+m9EuteJqWJCatlRtUaVvTr2s=, tarball: '@typescript-eslint/eslint-plugin/download/@typescript-eslint/eslint-plugin-4.31.0.tgz'}
+    resolution: {integrity: sha1-nD+m9EuteJqWJCatlRtUaVvTr2s=, tarball: '@typescript-eslint/eslint-plugin/download/@typescript-eslint/eslint-plugin-4.31.0.tgz?cache=0&sync_timestamp=1637139401104&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Feslint-plugin%2Fdownload%2F%40typescript-eslint%2Feslint-plugin-4.31.0.tgz'}
     engines: {node: ^10.12.0 || >=12.0.0}
     peerDependencies:
       '@typescript-eslint/parser': ^4.0.0
@@ -548,7 +548,7 @@ packages:
     dev: true
 
   /@typescript-eslint/parser/4.31.0_eslint@7.32.0+typescript@4.4.3:
-    resolution: {integrity: sha1-h7fNFrJLkXDHdZXYsTY/gEcSHgU=, tarball: '@typescript-eslint/parser/download/@typescript-eslint/parser-4.31.0.tgz?cache=0&sync_timestamp=1636966920341&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Fparser%2Fdownload%2F%40typescript-eslint%2Fparser-4.31.0.tgz'}
+    resolution: {integrity: sha1-h7fNFrJLkXDHdZXYsTY/gEcSHgU=, tarball: '@typescript-eslint/parser/download/@typescript-eslint/parser-4.31.0.tgz'}
     engines: {node: ^10.12.0 || >=12.0.0}
     peerDependencies:
       eslint: ^5.0.0 || ^6.0.0 || ^7.0.0
@@ -2496,7 +2496,7 @@ packages:
     dev: true
 
   /ms/2.0.0:
-    resolution: {integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=, tarball: ms/download/ms-2.0.0.tgz}
+    resolution: {integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=, tarball: ms/download/ms-2.0.0.tgz?cache=0&sync_timestamp=1632883299868&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fms%2Fdownload%2Fms-2.0.0.tgz}
     dev: true
 
   /ms/2.1.2:
@@ -3431,11 +3431,11 @@ packages:
     dev: true
 
   /tslib/1.14.1:
-    resolution: {integrity: sha1-zy04vcNKE0vK8QkcQfZhni9nLQA=, tarball: tslib/download/tslib-1.14.1.tgz}
+    resolution: {integrity: sha1-zy04vcNKE0vK8QkcQfZhni9nLQA=, tarball: tslib/download/tslib-1.14.1.tgz?cache=0&sync_timestamp=1632920830240&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Ftslib%2Fdownload%2Ftslib-1.14.1.tgz}
     dev: true
 
   /tslib/2.1.0:
-    resolution: {integrity: sha1-2mCGDxwuyqVwOrfTm8Bba/mIuXo=, tarball: tslib/download/tslib-2.1.0.tgz}
+    resolution: {integrity: sha1-2mCGDxwuyqVwOrfTm8Bba/mIuXo=, tarball: tslib/download/tslib-2.1.0.tgz?cache=0&sync_timestamp=1632920830240&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Ftslib%2Fdownload%2Ftslib-2.1.0.tgz}
     dev: true
 
   /tsutils/3.21.0_typescript@4.4.3:
