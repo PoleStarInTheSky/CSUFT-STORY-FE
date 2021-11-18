@@ -7,7 +7,7 @@ export interface AuthForm {
   account: string
   password: string
 }
-//服务端中放回的用户信息
+//服务端中返回的用户信息
 export interface UserResponse {
   id: string
   nickname: string
@@ -86,7 +86,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           setUser({ id, nickname, gender, avatar, desc, status: 'login' })
           resolve()
         })
-        .catch(reject)
+        .catch((error) => {
+          //status code在 2xx 字段之外
+          if (error.response) {
+            console.log(error.response)
+          }
+          reject(error)
+        })
     })
   }
   //每次刷新，若本地有 token 就去向服务端请求相关数据

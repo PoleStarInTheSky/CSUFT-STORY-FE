@@ -1,5 +1,5 @@
 import React from 'react'
-import Loading from '../Loading'
+
 export default function Sideweather() {
   const data = {
     code: '200',

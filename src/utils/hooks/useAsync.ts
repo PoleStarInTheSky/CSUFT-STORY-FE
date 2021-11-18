@@ -13,6 +13,8 @@ export default function useAsync<T, E = string>(
 
   //记忆好excute函数，只有asyncFunction变化时才会执行
   const execute = useCallback(() => {
+    //保证excute函数可以多次重复使用，每次调用酒吧相应状态设置为最初始的值
+    //这样的话，请求失败了，还可以继续调用
     setStatus('pending')
     setValue(null)
     setError(null)

@@ -86,6 +86,7 @@ export default function Login() {
                 type="text"
                 placeholder="账号"
                 onChange={(e) => setaccount(e.target.value)}
+                disabled={status === 'pending'}
               />
               {accountStatus === 'error' && (
                 <div className="text-sm ml-4 text-red-600 font-semibold">
@@ -108,6 +109,7 @@ export default function Login() {
                 type="password"
                 placeholder="密码"
                 onChange={(e) => setPassword(e.target.value)}
+                disabled={status === 'pending'}
               />
               {passwordStatus === 'error' && (
                 <div className="text-sm ml-4 text-red-600 font-semibold">
@@ -116,19 +118,34 @@ export default function Login() {
               )}
             </div>
             <div className="w-1/4">
-              <button
-                disabled={accountStatus !== 'pass' || passwordStatus !== 'pass'}
-                type="submit"
-                className="disabled:opacity-50 disabled:cursor-default cursor-pointer inline-block text-center text-white tracking-wider font-bold w-full px-1 py-2 rounded-2xl bg-gradient-to-r from-primary-deep to-primary-shallower"
-              >
-                登录
-              </button>
+              {status == 'error' && (
+                <div className="text-sm  text-red-600 font-semibold w-full text-center mb-1">
+                  出错,请重试
+                </div>
+              )}
+              {status === 'pending' ? (
+                <div className="flex justify-center items-center flex-col gap-y-2">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2  border-primary-default"></div>
+                  <div className="text-primary-default text-sm">加载中...</div>
+                </div>
+              ) : (
+                <button
+                  disabled={
+                    accountStatus !== 'pass' || passwordStatus !== 'pass'
+                  }
+                  type="submit"
+                  className="disabled:opacity-50 disabled:cursor-default cursor-pointer inline-block text-center text-white tracking-wider font-bold w-full px-1 py-2 rounded-2xl bg-gradient-to-r from-primary-deep to-primary-shallower"
+                >
+                  登录
+                </button>
+              )}
             </div>
           </form>
-
-          <div className="text-sm mt-4 flex justify-center items-center w-full tracking-wider text-primary-shallow hover:text-primary-deep select-none cursor-pointer">
-            <Link to="/register"> 还没有注册？</Link>
-          </div>
+          {status !== 'pending' && (
+            <div className="text-sm mt-4 flex justify-center items-center w-full tracking-wider text-primary-shallow hover:text-primary-deep select-none cursor-pointer">
+              <Link to="/register"> 还没有注册？</Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

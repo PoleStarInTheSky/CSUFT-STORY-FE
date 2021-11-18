@@ -36,36 +36,42 @@ export default function Dropdown() {
         <Link
           to="/"
           className="w-full flex justify-center items-center hover:bg-primary-shallow duration-300 hover:text-white cursor-pointer"
+          onClick={toggleShow}
         >
           <li className="select-none py-2">主页</li>
         </Link>
         <Link
           to="/write"
           className="w-full flex justify-center items-center hover:bg-primary-shallow duration-300 hover:text-white cursor-pointer"
+          onClick={toggleShow}
         >
           <li className="select-none py-2">创作</li>
         </Link>
         <Link
           to="/write"
           className="w-full flex justify-center items-center hover:bg-primary-shallow duration-300 hover:text-white cursor-pointer"
+          onClick={toggleShow}
         >
           <li className="select-none py-2">偶遇</li>
         </Link>
         <Link
           to="/write"
           className="w-full flex justify-center items-center hover:bg-primary-shallow duration-300 hover:text-white cursor-pointer"
+          onClick={toggleShow}
         >
           <li className="select-none py-2">设置</li>
         </Link>
         <Link
           to="/write"
           className="w-full flex justify-center items-center hover:bg-primary-shallow duration-300 hover:text-white cursor-pointer"
+          onClick={toggleShow}
         >
           <li className="select-none py-2">我的</li>
         </Link>
         <Link
           to="/write"
           className="w-full flex justify-center items-center hover:bg-primary-shallow duration-300 hover:text-white cursor-pointer"
+          onClick={toggleShow}
         >
           <li className="select-none py-2">登出</li>
         </Link>

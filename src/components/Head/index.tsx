@@ -10,8 +10,6 @@ interface PicInfo {
 }
 export default function Head() {
   const picApi = `${import.meta.env.VITE_SERVER_URI}/resource/headerimg/random`
-  // const [status, setStatus] = useState<Status>('pending')
-  // const [value, setValue] = useState<PicInfo | null>(null)
   const queryFunc = useCallback(() => {
     //先拿取向服务器请求获得数据，通过promise缓存图片
     function fetchHeaderImg(url: string) {
