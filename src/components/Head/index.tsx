@@ -8,8 +8,6 @@ interface PicInfo {
   name: string
   url: string
 }
-//读取中的状态
-type Status = 'idle' | 'pending' | 'success' | 'error'
 export default function Head() {
   const picApi = `${import.meta.env.VITE_SERVER_URI}/resource/headerimg/random`
   // const [status, setStatus] = useState<Status>('pending')

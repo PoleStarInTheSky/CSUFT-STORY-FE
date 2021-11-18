@@ -5,7 +5,7 @@ export default function Nav() {
     <div className="w-screen py-6 sticky z-100 top-0 h-10 hidden md:flex items-center justify-center font-light text-lg bg-white">
       <div className="flex-1">
         <div className="flex items-center justify-start md:pl-10 lg:pl-16 ">
-          <span className="inline-block p-1.5 font-normal bg-gray-500 text-white hover:bg-primary-default duration-300 cursor-default">
+          <span className="select-none inline-block p-1.5 font-normal bg-gray-500 text-white hover:bg-primary-default duration-300 cursor-default">
             林大故事
           </span>
         </div>
@@ -13,19 +13,19 @@ export default function Nav() {
 
       <div className="flex-2">
         <ul className="flex items-center justify-center md:gap-x-6 lg:gap-x-10 ">
-          <li className="cursor-pointer hover:text-primary-default duration-300">
+          <li className="cursor-pointer hover:text-primary-default duration-300 select-none">
             <Link to="/">主页</Link>
           </li>
-          <li className="cursor-pointer hover:text-primary-default duration-300">
+          <li className="cursor-pointer hover:text-primary-default duration-300 select-none">
             <Link to="/write">创作</Link>
           </li>
-          <li className="cursor-pointer hover:text-primary-default duration-300">
+          <li className="cursor-pointer hover:text-primary-default duration-300 select-none">
             偶遇
           </li>
-          <li className="cursor-pointer hover:text-primary-default duration-300">
+          <li className="cursor-pointer hover:text-primary-default duration-300 select-none">
             设置
           </li>
-          <li className="cursor-pointer hover:text-primary-default duration-300">
+          <li className="cursor-pointer hover:text-primary-default duration-300 select-none">
             登出
           </li>
         </ul>

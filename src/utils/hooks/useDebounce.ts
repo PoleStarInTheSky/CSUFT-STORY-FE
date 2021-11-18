@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+//这里的参数value一般是一个state，通过在父组件更改state影响值
 export function useDebounce<V>(value: V, delay = 500) {
   const [debouncedValue, setDebouncedValue] = useState(value)
   useEffect(() => {

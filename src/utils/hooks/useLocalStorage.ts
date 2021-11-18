@@ -5,6 +5,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
     try {
       const item = window.localStorage.getItem(key)
       //当本地有值时，忽略initialValue
+      //这里不要给 localStorage 赋初始值
       return item ? JSON.parse(item) : initialValue
     } catch (error) {
       console.log(error)
@@ -15,6 +16,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
   //对setStoredValue做一层包装，因为不仅要保存变更,还要保存到本地
   const setValue = (value: T | ((val: T) => T)) => {
     try {
+      //支持useState模式的函数调用
       const valueToStore =
         value instanceof Function ? value(storedValue) : value
 
