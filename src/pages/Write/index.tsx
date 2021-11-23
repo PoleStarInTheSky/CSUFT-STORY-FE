@@ -1,7 +1,53 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { debounce } from '../../utils/deBounce'
 import useDocumentTitle from '../../utils/hooks/useDocumentTitle'
+import MarkdownIt from 'markdown-it'
+import MdEditor from 'react-markdown-editor-lite'
+// 导入编辑器的样式
+import 'react-markdown-editor-lite/lib/index.css'
+import axios from 'axios'
+import { useParams } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
+import { useAuth } from '../../context/authContext'
+import useAsync from '../../utils/hooks/useAsync'
 
+// 故事的两种类型， 分为草稿和正式
+// 草稿类型
+interface Draft {
+  readonly title?: string
+  readonly desc?: string
+  readonly header_img?: string
+  readonly likes?: number
+  readonly body?: string
+  readonly type: 'draft'
+  readonly author: string
+  readonly date_posted?: string
+  // 数据何时被更新需要保存下来，方便给用户显示
+  readonly date_updated: string
+}
+// 正式类型
+interface Formal {
+  readonly title: string
+  readonly desc: string
+  readonly header_img: string
+  readonly likes: number
+  readonly body: string
+  readonly type: 'formal'
+  readonly author: string
+  readonly date_posted: string
+  readonly date_updated: string
+}
+// 使用联合类型定义文章类型
+export type Post = Draft | Formal
+//定义post接口的返回数据
+type PostResponse = { _id: string } & Post
+
+//获取 浏览器的 history
+//因为 React-router 就是用的是 history 包，所以这里实用包，不直接用全局对象
+const history = createBrowserHistory()
+
+// 初始化 markdown 解析器
+const mdParser = new MarkdownIt()
 //lock 用来追踪当前 input 框是否属于 onComposition 状态
 //处于 onComposition 状态的时候，组件被输入法在输入
 //项目并不希望监听这一阶段的内容，所以在这一阶段不调用onChange回调函数
@@ -11,10 +57,57 @@ import useDocumentTitle from '../../utils/hooks/useDocumentTitle'
 let lock = false
 export default function Write() {
   console.log('####rerender')
-  const [file, setFile] = useState<File | null>(null)
-  const [title, setTitle] = useState('创作')
+  //当前故事的 id ,如果是新建的文章，那么id是undefined
+  //注意useParams 获得的数据只与 Link 标签的 to 有关系，后来有更改不会有大的影响
+  const { postid: postidUrl } = useParams()
+  const [postid, setPostid] = useState<undefined | string>(postidUrl)
+  console.log(postid)
+  //头图链接
+  const [headerImg, setHeaderImg] = useState('')
+  //标题
+  const [title, setTitle] = useState('')
+  //摘要
   const [desc, setDesc] = useState('')
-  useDocumentTitle(title)
+  //文章正文
+  const [body, setBody] = useState('')
+  const { user } = useAuth()
+  //设置页面的标题
+  useDocumentTitle(title || '创作')
+  // 实现故事实时创建和保存
+  useEffect(() => {
+    const config = { headers: { 'Content-Type': 'application/json' } }
+    const postApi = `${import.meta.env.VITE_SERVER_URI}/post`
+    if (postid) {
+      //如果是在编辑一篇文章
+    } else {
+      //如果是在编写一篇新的文章
+      // 至少输入了一些信息才创建文章
+      if (body || title || desc || headerImg) {
+        const post: Post = {
+          body,
+          title,
+          desc,
+          header_img: headerImg,
+          author: user.id as string,
+          date_updated: new Date().toISOString(),
+          type: 'draft',
+        }
+        //创建文章
+        axios
+          .post<PostResponse>(postApi, post, config)
+          .then((res) => {
+            //使用replace而不是 useNavigate , 实时更改, 不污染 history 记录
+            history.replace(`/${res.data._id}`)
+            // 成功创建文章后设置当前文章的id
+            setPostid(res.data._id)
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      }
+    }
+  }, [postid, title, desc, headerImg, body, user])
+  //当文章标题发生变化时调用
   const handleOnchange = (e) => {
     if (!lock) {
       if (e.target.value !== '') {
@@ -24,52 +117,170 @@ export default function Write() {
       }
     }
   }
+  //提交文章表单时调用
   const handleSubmit = () => {
     console.log('yes')
   }
+  //文章中上传图片时调用
+  const handleUploadImg: (file: File) => Promise<string> = (file) => {
+    return new Promise<string>((resolve, reject) => {
+      //构建表单数据结构
+      const fd = new FormData()
+      //将图片放入
+      fd.append('image', file)
+      //发送请求
+      axios
+        .post<{ url: string }>(
+          `${import.meta.env.VITE_SERVER_URI}/upload/image`,
+          fd,
+        )
+        .then((res) => {
+          resolve(res.data.url)
+        })
+        .catch(reject)
+    })
+  }
+  //储存头图文件
+  const [headerFile, setHeaderFile] = useState<File | null>(null)
+  //处理头图上传的函数,加载完再返回
+  const handleHeaderFile = useCallback(() => {
+    return new Promise((resolve, reject) => {
+      const i = new Image()
+      handleUploadImg(headerFile as File).then((res) => {
+        i.src = res
+        i.onload = () => resolve(res)
+        i.onerror = reject
+      })
+    })
+  }, [headerFile])
+  //用useAsync来管理上传头图的状态
+  const {
+    status: headerStatus,
+    value: headerValue,
+    execute: headerExcute,
+  } = useAsync(handleHeaderFile, false)
+
+  //从根源上说 ， 只要头图文件发送变化就执行上传函数
+  useEffect(() => {
+    if (headerFile) headerExcute()
+  }, [headerFile, headerExcute])
+  //头图上传成功，更改本地string
+  useEffect(() => {
+    if (typeof headerValue === 'string') setHeaderImg(headerValue)
+  }, [headerValue])
+  //获取头图区域的input按钮
+  const $input = useRef<HTMLInputElement>(null)
+  const [show, setShow] = useState(false)
   return (
     <>
-      <div className="pt-12">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+      <div className="pt-2 w-screen flex-1">
+        <form
+          className="w-full flex items-center flex-col justify-center h-full"
+          onSubmit={handleSubmit}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 4v16m8-8H4"
-          />
-        </svg>
-        {file && (
-          <img
-            className="ml-36 w-7/10screen h-64 rounded-xl object-cover"
-            src={URL.createObjectURL(file)}
-            alt=""
-          />
-        )}
-        <form className="relative" onSubmit={handleSubmit}>
-          <div className="ml-36 flex items-center">
-            <label htmlFor="fileInput">
-              <i className="writeIcon fas fa-plus"></i>
-            </label>
-            <input
-              type="file"
-              id="fileInput"
-              style={{ display: 'none' }}
-              onChange={(e) => {
-                if (e.target.files != null) setFile(e.target.files[0])
+          <div className="w-full flex items-center flex-col justify-center">
+            {/*头图*/}
+            <div
+              className="mb-2"
+              onClick={() => $input.current?.click()}
+              onDrop={(e) => {
+                e.preventDefault()
+                setHeaderFile(e.dataTransfer.files[0])
               }}
-            />
+              onDragOver={(e) => {
+                e.preventDefault()
+              }}
+              onDragLeave={(e) => {
+                e.preventDefault()
+              }}
+            >
+              <div
+                className={`w-7/10screen h-40 flex items-center justify-center duration-300 ${
+                  headerStatus === 'idle'
+                    ? 'border-dashed border-2 border-gray-300  shadow-md rounded-md'
+                    : ''
+                } `}
+              >
+                {headerStatus === 'idle' && (
+                  <div className="text-gray-500">请点击或拖拽上传你的图片</div>
+                )}
+                {headerStatus === 'pending' && (
+                  <div className="animate-pulse bg-gray-300 h-full w-full rounded-md"></div>
+                )}
+                {headerStatus === 'success' && (
+                  <img
+                    className="w-7/10screen h-40 object-cover animate-appear-defalut rounded-md"
+                    src={headerValue as string}
+                    alt="头图"
+                  />
+                )}
+                <input
+                  type="file"
+                  className="hidden"
+                  accept="image/*"
+                  ref={$input}
+                  onChange={(e) => {
+                    if (e.target.files) setHeaderFile(e.target.files[0])
+                  }}
+                />
+              </div>
+            </div>
+
+            {/*标题*/}
             <input
               type="text"
-              placeholder="Title"
-              className="writeInput"
-              autoFocus={true}
-              onChange={debounce(handleOnchange)}
+              placeholder="请输入标题"
+              className="border-none w-3/4 placeholder-gray-500 outline-none text-2xl font-bold"
+              autoFocus={false}
+              onChange={handleOnchange}
+              onCompositionStart={debounce(() => {
+                lock = true
+              })}
+              onCompositionEnd={debounce((e) => {
+                lock = false
+                handleOnchange(e)
+              })}
+            />
+            {/*标签*/}
+            <div className="w-3/4 relative h-7 mt-3">
+              <input
+                placeholder="请输入标签"
+                className={`${
+                  show ? 'opacity-100' : 'opacity-0'
+                } absolute resize-none border-none w-full placeholder-gray-500 font-semibold  outline-none text-lg`}
+                autoFocus={false}
+                onChange={handleOnchange}
+                onFocus={() => setShow(true)}
+                onBlur={() => setShow(false)}
+                onCompositionStart={debounce(() => {
+                  lock = true
+                })}
+                onCompositionEnd={debounce((e) => {
+                  lock = false
+                  handleOnchange(e)
+                })}
+              />
+              {/**pointer-events-none 取消了自身的所有点击事件 */}
+              <div
+                className={`${
+                  show ? 'invisible' : 'visible'
+                } text-lg font-semibold absolute pointer-events-none`}
+              >
+                {'#文章 #我爱 #哈哈 #再见'
+                  .match(/(^|\s)(#[\u4e00-\u9fa5a-z\d-]+)/gi)
+                  ?.map((item) => (
+                    <span className="text-primary-default">{item}</span>
+                  ))}
+              </div>
+            </div>
+
+            {/*摘要*/}
+            <textarea
+              placeholder="请输入摘要"
+              className="writeInput resize-none border-none w-3/4 placeholder-gray-500 font-semibold mt-3 outline-none text-lg mb-3"
+              rows={3}
+              autoFocus={false}
+              onChange={handleOnchange}
               onCompositionStart={debounce(() => {
                 lock = true
               })}
@@ -79,16 +290,25 @@ export default function Write() {
               })}
             />
           </div>
-          <div className="writeFormGroup">
-            <textarea
-              placeholder="Tell your story..."
-              className="writeInput writeText"
-              onChange={(e) => setDesc(e.target.value)}
-            ></textarea>
+          <div className="w-full flex-1">
+            <MdEditor
+              style={{ height: '100%', maxWidth: '100%' }}
+              renderHTML={(text) => mdParser.render(text)}
+              onChange={(e) => setBody(e.text)}
+              placeholder={`书写你的林大故事...\n\n提示:可以点击工具栏最右侧切换全屏编辑`}
+              onImageUpload={handleUploadImg}
+            />
           </div>
-          <button className="writeSubmit" type="submit">
-            发布
-          </button>
+
+          <div className="flex flex-col md:flex-row w-full mt-1 items-center justify-center md:justify-around">
+            <div className="mb:2 md:mb-0">哈哈哈哈啊哈哈</div>
+            <button
+              type="submit"
+              className="disabled:opacity-50 disabled:cursor-default cursor-pointer inline-block text-center text-white tracking-wider font-bold w-full md:w-1/6 px-1 py-2 rounded-2xl bg-gradient-to-r from-primary-deep to-primary-shallower"
+            >
+              发布
+            </button>
+          </div>
         </form>
       </div>
     </>

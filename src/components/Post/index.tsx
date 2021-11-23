@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export default function Post() {
   return (
     <div>
-      <div className="w-96 flex flex-col mx-6 mt-10">
+      <div className="w-96 flex flex-col items-center justify-center mx-6 mt-10 ">
         <img
           className="w-96 h-72 object-cover rounded-lg"
           src="https://images.pexels.com/photos/6711867/pexels-photo-6711867.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
@@ -33,7 +33,7 @@ export default function Post() {
           </span>
         </div>
         {/*暂时使用@tailwindcss/line-clamp实现按行数截断，之后采用兼容性更好的方法 */}
-        <p className="text-sm text-gray-500 mt-4 line-clamp-4 text-center">
+        <p className="text-sm text-gray-500 mt-4 line-clamp-3 text-center">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
           officia architecto deserunt deleniti? Labore ipsum aspernatur magnam
           fugiat, reprehenderit praesentium blanditiis quos cupiditate ratione

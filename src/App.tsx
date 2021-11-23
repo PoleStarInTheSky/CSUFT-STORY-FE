@@ -5,6 +5,7 @@ import Homepage from './pages/Homepage'
 import Write from './pages/Write'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Detail from './pages/Detail'
 function App() {
   return (
     <div>
@@ -14,7 +15,11 @@ function App() {
           <Route path="/" element={<Homepage />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
-          <Route path="/write" element={<Write />}></Route>
+          <Route path="/write/" element={<Write />}>
+            <Route path=":postid" element={<Write />} />
+            <Route path="" element={<Write />} />
+          </Route>
+          <Route path="/detail" element={<Detail />}></Route>
         </Routes>
       </div>
     </div>

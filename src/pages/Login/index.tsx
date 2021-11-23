@@ -17,6 +17,7 @@ export default function Login() {
   //实用useAync管理状态
   //使用excute函数就会执行登录逻辑
   const { login } = useAuth()
+  //包含参数的登录函数 作为useAync 的 excute
   const loginWithParam = useCallback(() => {
     return login({ account, password })
   }, [account, password, login])

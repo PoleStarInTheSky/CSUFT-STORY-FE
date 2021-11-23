@@ -12,11 +12,13 @@ specifiers:
   eslint: 7.32.0
   history: '5'
   lint-staged: 11.2.6
+  markdown-it: ^12.2.0
   postcss: 8.3.6
   postcss-nested: 5.0.6
   prettier: 2.4.0
   react: 17.0.2
   react-dom: 17.0.2
+  react-markdown-editor-lite: ^1.3.1
   react-router-dom: '6'
   tailwindcss: 2.2.15
   typescript: 4.4.3
@@ -28,8 +30,10 @@ dependencies:
   '@tailwindcss/line-clamp': 0.2.2_tailwindcss@2.2.15
   axios: 0.24.0
   history: 5.1.0
+  markdown-it: 12.2.0
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
+  react-markdown-editor-lite: 1.3.1_react@17.0.2
   react-router-dom: 6.0.2_react-dom@17.0.2+react@17.0.2
 
 devDependencies:
@@ -477,7 +481,7 @@ packages:
     dev: true
 
   /@types/json-schema/7.0.9:
-    resolution: {integrity: sha1-l+3JA36gw4WFMgsolk3eOznkZg0=, tarball: '@types/json-schema/download/@types/json-schema-7.0.9.tgz'}
+    resolution: {integrity: sha1-l+3JA36gw4WFMgsolk3eOznkZg0=, tarball: '@types/json-schema/download/@types/json-schema-7.0.9.tgz?cache=0&sync_timestamp=1637272400115&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40types%2Fjson-schema%2Fdownload%2F%40types%2Fjson-schema-7.0.9.tgz'}
     dev: true
 
   /@types/json5/0.0.29:
@@ -505,7 +509,7 @@ packages:
     dev: true
 
   /@typescript-eslint/eslint-plugin/4.31.0_d9c1bc16c4e2aea4e8e177a5961dd3bf:
-    resolution: {integrity: sha1-nD+m9EuteJqWJCatlRtUaVvTr2s=, tarball: '@typescript-eslint/eslint-plugin/download/@typescript-eslint/eslint-plugin-4.31.0.tgz?cache=0&sync_timestamp=1637139401104&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40typescript-eslint%2Feslint-plugin%2Fdownload%2F%40typescript-eslint%2Feslint-plugin-4.31.0.tgz'}
+    resolution: {integrity: sha1-nD+m9EuteJqWJCatlRtUaVvTr2s=, tarball: '@typescript-eslint/eslint-plugin/download/@typescript-eslint/eslint-plugin-4.31.0.tgz'}
     engines: {node: ^10.12.0 || >=12.0.0}
     peerDependencies:
       '@typescript-eslint/parser': ^4.0.0
@@ -744,6 +748,10 @@ packages:
       sprintf-js: registry.nlark.com/sprintf-js/1.0.3
     dev: true
 
+  /argparse/2.0.1:
+    resolution: {integrity: sha1-JG9Q88p4oyQPbJl+ipvR6sSeSzg=, tarball: argparse/download/argparse-2.0.1.tgz}
+    dev: false
+
   /array-includes/3.1.3:
     resolution: {integrity: sha1-x/YZs4KtKvr1Mmzd/cCvxhr3aQo=, tarball: array-includes/download/array-includes-3.1.3.tgz}
     engines: {node: '>= 0.4'}
@@ -916,6 +924,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /classnames/2.3.1:
+    resolution: {integrity: sha1-38+jiR4wbsHa0QXQ6I9EF7hTXo4=, tarball: classnames/download/classnames-2.3.1.tgz}
+    dev: false
 
   /clean-stack/2.2.0:
     resolution: {integrity: sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==}
@@ -1245,6 +1257,10 @@ packages:
       ansi-colors: 4.1.1
     dev: true
 
+  /entities/2.1.0:
+    resolution: {integrity: sha1-mS0xKc999ocLlsV4WMJJoSD4uLU=, tarball: entities/download/entities-2.1.0.tgz}
+    dev: false
+
   /error-ex/1.3.2:
     resolution: {integrity: sha1-tKxAZIEH/c3PriQvQovqihTU8b8=, tarball: error-ex/download/error-ex-1.3.2.tgz}
     dependencies:
@@ -1293,7 +1309,7 @@ packages:
     optional: true
 
   /esbuild-darwin-64/0.13.13:
-    resolution: {integrity: sha512-wkaiGAsN/09X9kDlkxFfbbIgR78SNjMOfUhoel3CqKBDsi9uZhw7HBNHNxTzYUK8X8LAKFpbODgcRB3b/I8gHA==, tarball: esbuild-darwin-64/download/esbuild-darwin-64-0.13.13.tgz}
+    resolution: {integrity: sha512-wkaiGAsN/09X9kDlkxFfbbIgR78SNjMOfUhoel3CqKBDsi9uZhw7HBNHNxTzYUK8X8LAKFpbODgcRB3b/I8gHA==, tarball: esbuild-darwin-64/download/esbuild-darwin-64-0.13.13.tgz?cache=0&sync_timestamp=1637498583993&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild-darwin-64%2Fdownload%2Fesbuild-darwin-64-0.13.13.tgz}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
@@ -1301,7 +1317,7 @@ packages:
     optional: true
 
   /esbuild-darwin-arm64/0.13.13:
-    resolution: {integrity: sha512-b02/nNKGSV85Gw9pUCI5B48AYjk0vFggDeom0S6QMP/cEDtjSh1WVfoIFNAaLA0MHWfue8KBwoGVsN7rBshs4g==, tarball: esbuild-darwin-arm64/download/esbuild-darwin-arm64-0.13.13.tgz}
+    resolution: {integrity: sha512-b02/nNKGSV85Gw9pUCI5B48AYjk0vFggDeom0S6QMP/cEDtjSh1WVfoIFNAaLA0MHWfue8KBwoGVsN7rBshs4g==, tarball: esbuild-darwin-arm64/download/esbuild-darwin-arm64-0.13.13.tgz?cache=0&sync_timestamp=1637453606553&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild-darwin-arm64%2Fdownload%2Fesbuild-darwin-arm64-0.13.13.tgz}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
@@ -1309,7 +1325,7 @@ packages:
     optional: true
 
   /esbuild-freebsd-64/0.13.13:
-    resolution: {integrity: sha512-ALgXYNYDzk9YPVk80A+G4vz2D22Gv4j4y25exDBGgqTcwrVQP8rf/rjwUjHoh9apP76oLbUZTmUmvCMuTI1V9A==, tarball: esbuild-freebsd-64/download/esbuild-freebsd-64-0.13.13.tgz}
+    resolution: {integrity: sha512-ALgXYNYDzk9YPVk80A+G4vz2D22Gv4j4y25exDBGgqTcwrVQP8rf/rjwUjHoh9apP76oLbUZTmUmvCMuTI1V9A==, tarball: esbuild-freebsd-64/download/esbuild-freebsd-64-0.13.13.tgz?cache=0&sync_timestamp=1637498589376&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild-freebsd-64%2Fdownload%2Fesbuild-freebsd-64-0.13.13.tgz}
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
@@ -1317,7 +1333,7 @@ packages:
     optional: true
 
   /esbuild-freebsd-arm64/0.13.13:
-    resolution: {integrity: sha512-uFvkCpsZ1yqWQuonw5T1WZ4j59xP/PCvtu6I4pbLejhNo4nwjW6YalqnBvBSORq5/Ifo9S/wsIlVHzkzEwdtlw==, tarball: esbuild-freebsd-arm64/download/esbuild-freebsd-arm64-0.13.13.tgz}
+    resolution: {integrity: sha512-uFvkCpsZ1yqWQuonw5T1WZ4j59xP/PCvtu6I4pbLejhNo4nwjW6YalqnBvBSORq5/Ifo9S/wsIlVHzkzEwdtlw==, tarball: esbuild-freebsd-arm64/download/esbuild-freebsd-arm64-0.13.13.tgz?cache=0&sync_timestamp=1637453602076&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild-freebsd-arm64%2Fdownload%2Fesbuild-freebsd-arm64-0.13.13.tgz}
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
@@ -1325,7 +1341,7 @@ packages:
     optional: true
 
   /esbuild-linux-32/0.13.13:
-    resolution: {integrity: sha512-yxR9BBwEPs9acVEwTrEE2JJNHYVuPQC9YGjRfbNqtyfK/vVBQYuw8JaeRFAvFs3pVJdQD0C2BNP4q9d62SCP4w==, tarball: esbuild-linux-32/download/esbuild-linux-32-0.13.13.tgz}
+    resolution: {integrity: sha512-yxR9BBwEPs9acVEwTrEE2JJNHYVuPQC9YGjRfbNqtyfK/vVBQYuw8JaeRFAvFs3pVJdQD0C2BNP4q9d62SCP4w==, tarball: esbuild-linux-32/download/esbuild-linux-32-0.13.13.tgz?cache=0&sync_timestamp=1637453605763&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild-linux-32%2Fdownload%2Fesbuild-linux-32-0.13.13.tgz}
     cpu: [ia32]
     os: [linux]
     requiresBuild: true
@@ -1333,7 +1349,7 @@ packages:
     optional: true
 
   /esbuild-linux-64/0.13.13:
-    resolution: {integrity: sha512-kzhjlrlJ+6ESRB/n12WTGll94+y+HFeyoWsOrLo/Si0s0f+Vip4b8vlnG0GSiS6JTsWYAtGHReGczFOaETlKIw==, tarball: esbuild-linux-64/download/esbuild-linux-64-0.13.13.tgz}
+    resolution: {integrity: sha512-kzhjlrlJ+6ESRB/n12WTGll94+y+HFeyoWsOrLo/Si0s0f+Vip4b8vlnG0GSiS6JTsWYAtGHReGczFOaETlKIw==, tarball: esbuild-linux-64/download/esbuild-linux-64-0.13.13.tgz?cache=0&sync_timestamp=1637453604772&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild-linux-64%2Fdownload%2Fesbuild-linux-64-0.13.13.tgz}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
@@ -1341,7 +1357,7 @@ packages:
     optional: true
 
   /esbuild-linux-arm/0.13.13:
-    resolution: {integrity: sha512-hXub4pcEds+U1TfvLp1maJ+GHRw7oizvzbGRdUvVDwtITtjq8qpHV5Q5hWNNn6Q+b3b2UxF03JcgnpzCw96nUQ==, tarball: esbuild-linux-arm/download/esbuild-linux-arm-0.13.13.tgz}
+    resolution: {integrity: sha512-hXub4pcEds+U1TfvLp1maJ+GHRw7oizvzbGRdUvVDwtITtjq8qpHV5Q5hWNNn6Q+b3b2UxF03JcgnpzCw96nUQ==, tarball: esbuild-linux-arm/download/esbuild-linux-arm-0.13.13.tgz?cache=0&sync_timestamp=1637453602906&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild-linux-arm%2Fdownload%2Fesbuild-linux-arm-0.13.13.tgz}
     cpu: [arm]
     os: [linux]
     requiresBuild: true
@@ -1349,7 +1365,7 @@ packages:
     optional: true
 
   /esbuild-linux-arm64/0.13.13:
-    resolution: {integrity: sha512-KMrEfnVbmmJxT3vfTnPv/AiXpBFbbyExH13BsUGy1HZRPFMi5Gev5gk8kJIZCQSRfNR17aqq8sO5Crm2KpZkng==, tarball: esbuild-linux-arm64/download/esbuild-linux-arm64-0.13.13.tgz}
+    resolution: {integrity: sha512-KMrEfnVbmmJxT3vfTnPv/AiXpBFbbyExH13BsUGy1HZRPFMi5Gev5gk8kJIZCQSRfNR17aqq8sO5Crm2KpZkng==, tarball: esbuild-linux-arm64/download/esbuild-linux-arm64-0.13.13.tgz?cache=0&sync_timestamp=1637498588090&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild-linux-arm64%2Fdownload%2Fesbuild-linux-arm64-0.13.13.tgz}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
@@ -1357,7 +1373,7 @@ packages:
     optional: true
 
   /esbuild-linux-mips64le/0.13.13:
-    resolution: {integrity: sha512-cJT9O1LYljqnnqlHaS0hdG73t7hHzF3zcN0BPsjvBq+5Ad47VJun+/IG4inPhk8ta0aEDK6LdP+F9299xa483w==, tarball: esbuild-linux-mips64le/download/esbuild-linux-mips64le-0.13.13.tgz}
+    resolution: {integrity: sha512-cJT9O1LYljqnnqlHaS0hdG73t7hHzF3zcN0BPsjvBq+5Ad47VJun+/IG4inPhk8ta0aEDK6LdP+F9299xa483w==, tarball: esbuild-linux-mips64le/download/esbuild-linux-mips64le-0.13.13.tgz?cache=0&sync_timestamp=1637498590849&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild-linux-mips64le%2Fdownload%2Fesbuild-linux-mips64le-0.13.13.tgz}
     cpu: [mips64el]
     os: [linux]
     requiresBuild: true
@@ -1373,7 +1389,7 @@ packages:
     optional: true
 
   /esbuild-netbsd-64/0.13.13:
-    resolution: {integrity: sha512-A/B7rwmzPdzF8c3mht5TukbnNwY5qMJqes09ou0RSzA5/jm7Jwl/8z853ofujTFOLhkNHUf002EAgokzSgEMpQ==, tarball: esbuild-netbsd-64/download/esbuild-netbsd-64-0.13.13.tgz}
+    resolution: {integrity: sha512-A/B7rwmzPdzF8c3mht5TukbnNwY5qMJqes09ou0RSzA5/jm7Jwl/8z853ofujTFOLhkNHUf002EAgokzSgEMpQ==, tarball: esbuild-netbsd-64/download/esbuild-netbsd-64-0.13.13.tgz?cache=0&sync_timestamp=1637453599938&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild-netbsd-64%2Fdownload%2Fesbuild-netbsd-64-0.13.13.tgz}
     cpu: [x64]
     os: [netbsd]
     requiresBuild: true
@@ -1389,7 +1405,7 @@ packages:
     optional: true
 
   /esbuild-sunos-64/0.13.13:
-    resolution: {integrity: sha512-ihyds9O48tVOYF48iaHYUK/boU5zRaLOXFS+OOL3ceD39AyHo46HVmsJLc7A2ez0AxNZCxuhu+P9OxfPfycTYQ==, tarball: esbuild-sunos-64/download/esbuild-sunos-64-0.13.13.tgz}
+    resolution: {integrity: sha512-ihyds9O48tVOYF48iaHYUK/boU5zRaLOXFS+OOL3ceD39AyHo46HVmsJLc7A2ez0AxNZCxuhu+P9OxfPfycTYQ==, tarball: esbuild-sunos-64/download/esbuild-sunos-64-0.13.13.tgz?cache=0&sync_timestamp=1637498592154&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild-sunos-64%2Fdownload%2Fesbuild-sunos-64-0.13.13.tgz}
     cpu: [x64]
     os: [sunos]
     requiresBuild: true
@@ -1397,7 +1413,7 @@ packages:
     optional: true
 
   /esbuild-windows-32/0.13.13:
-    resolution: {integrity: sha512-h2RTYwpG4ldGVJlbmORObmilzL8EECy8BFiF8trWE1ZPHLpECE9//J3Bi+W3eDUuv/TqUbiNpGrq4t/odbayUw==, tarball: esbuild-windows-32/download/esbuild-windows-32-0.13.13.tgz}
+    resolution: {integrity: sha512-h2RTYwpG4ldGVJlbmORObmilzL8EECy8BFiF8trWE1ZPHLpECE9//J3Bi+W3eDUuv/TqUbiNpGrq4t/odbayUw==, tarball: esbuild-windows-32/download/esbuild-windows-32-0.13.13.tgz?cache=0&sync_timestamp=1637453603680&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild-windows-32%2Fdownload%2Fesbuild-windows-32-0.13.13.tgz}
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
@@ -1413,7 +1429,7 @@ packages:
     optional: true
 
   /esbuild-windows-arm64/0.13.13:
-    resolution: {integrity: sha512-6fsDfTuTvltYB5k+QPah/x7LrI2+OLAJLE3bWLDiZI6E8wXMQU+wLqtEO/U/RvJgVY1loPs5eMpUBpVajczh1A==, tarball: esbuild-windows-arm64/download/esbuild-windows-arm64-0.13.13.tgz}
+    resolution: {integrity: sha512-6fsDfTuTvltYB5k+QPah/x7LrI2+OLAJLE3bWLDiZI6E8wXMQU+wLqtEO/U/RvJgVY1loPs5eMpUBpVajczh1A==, tarball: esbuild-windows-arm64/download/esbuild-windows-arm64-0.13.13.tgz?cache=0&sync_timestamp=1637453599194&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fesbuild-windows-arm64%2Fdownload%2Fesbuild-windows-arm64-0.13.13.tgz}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
@@ -1647,6 +1663,10 @@ packages:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /eventemitter3/4.0.7:
+    resolution: {integrity: sha1-Lem2j2Uo1WRO9cWVJqG0oHMGFp8=, tarball: eventemitter3/download/eventemitter3-4.0.7.tgz?cache=0&sync_timestamp=1632820928055&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Feventemitter3%2Fdownload%2Feventemitter3-4.0.7.tgz}
+    dev: false
 
   /execa/5.1.1:
     resolution: {integrity: sha512-8uSpZZocAZRBAPIEINJj3Lo9HyGitllczc27Eh5YYojjMFMn8yHMDMaUHE2Jqfq05D/wucwI4JGURyXt1vchyg==}
@@ -2323,6 +2343,12 @@ packages:
     resolution: {integrity: sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=}
     dev: true
 
+  /linkify-it/3.0.3:
+    resolution: {integrity: sha1-qYuvRM5FpVDvtNScdp0HUkzC+i4=, tarball: linkify-it/download/linkify-it-3.0.3.tgz}
+    dependencies:
+      uc.micro: 1.0.6
+    dev: false
+
   /lint-staged/11.2.6:
     resolution: {integrity: sha512-Vti55pUnpvPE0J9936lKl0ngVeTdSZpEdTNhASbkaWX7J5R9OEifo1INBGQuGW4zmy6OG+TcWPJ3m5yuy5Q8Tg==}
     hasBin: true
@@ -2449,6 +2475,21 @@ packages:
     dev: true
     optional: true
 
+  /markdown-it/12.2.0:
+    resolution: {integrity: sha1-CR9yD9XbIG+A3nqNHxpwNf0NONs=, tarball: markdown-it/download/markdown-it-12.2.0.tgz}
+    hasBin: true
+    dependencies:
+      argparse: 2.0.1
+      entities: 2.1.0
+      linkify-it: 3.0.3
+      mdurl: 1.0.1
+      uc.micro: 1.0.6
+    dev: false
+
+  /mdurl/1.0.1:
+    resolution: {integrity: sha1-/oWy7HWlkDfyrf7BAP1sYBdhFS4=, tarball: mdurl/download/mdurl-1.0.1.tgz}
+    dev: false
+
   /merge-stream/2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
     dev: true
@@ -2496,7 +2537,7 @@ packages:
     dev: true
 
   /ms/2.0.0:
-    resolution: {integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=, tarball: ms/download/ms-2.0.0.tgz?cache=0&sync_timestamp=1632883299868&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fms%2Fdownload%2Fms-2.0.0.tgz}
+    resolution: {integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=, tarball: ms/download/ms-2.0.0.tgz}
     dev: true
 
   /ms/2.1.2:
@@ -2675,7 +2716,7 @@ packages:
     dev: true
 
   /parse-json/4.0.0:
-    resolution: {integrity: sha1-vjX1Qlvh9/bHRxhPmKeIy5lHfuA=, tarball: parse-json/download/parse-json-4.0.0.tgz?cache=0&sync_timestamp=1636945102125&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fparse-json%2Fdownload%2Fparse-json-4.0.0.tgz}
+    resolution: {integrity: sha1-vjX1Qlvh9/bHRxhPmKeIy5lHfuA=, tarball: parse-json/download/parse-json-4.0.0.tgz?cache=0&sync_timestamp=1637476739355&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fparse-json%2Fdownload%2Fparse-json-4.0.0.tgz}
     engines: {node: '>=4'}
     dependencies:
       error-ex: 1.3.2
@@ -2897,6 +2938,18 @@ packages:
       object-assign: 4.1.1
       react: 17.0.2
       scheduler: 0.20.2
+    dev: false
+
+  /react-markdown-editor-lite/1.3.1_react@17.0.2:
+    resolution: {integrity: sha1-MsaCVATWdK+JjjpOcLhG/8tngq0=, tarball: react-markdown-editor-lite/download/react-markdown-editor-lite-1.3.1.tgz}
+    peerDependencies:
+      react: ^16.9.0 || ^17.0.0
+    dependencies:
+      '@babel/runtime': 7.16.3
+      classnames: 2.3.1
+      eventemitter3: 4.0.7
+      react: 17.0.2
+      uuid: 8.3.2
     dev: false
 
   /react-refresh/0.10.0:
@@ -3431,11 +3484,11 @@ packages:
     dev: true
 
   /tslib/1.14.1:
-    resolution: {integrity: sha1-zy04vcNKE0vK8QkcQfZhni9nLQA=, tarball: tslib/download/tslib-1.14.1.tgz?cache=0&sync_timestamp=1632920830240&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Ftslib%2Fdownload%2Ftslib-1.14.1.tgz}
+    resolution: {integrity: sha1-zy04vcNKE0vK8QkcQfZhni9nLQA=, tarball: tslib/download/tslib-1.14.1.tgz}
     dev: true
 
   /tslib/2.1.0:
-    resolution: {integrity: sha1-2mCGDxwuyqVwOrfTm8Bba/mIuXo=, tarball: tslib/download/tslib-2.1.0.tgz?cache=0&sync_timestamp=1632920830240&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Ftslib%2Fdownload%2Ftslib-2.1.0.tgz}
+    resolution: {integrity: sha1-2mCGDxwuyqVwOrfTm8Bba/mIuXo=, tarball: tslib/download/tslib-2.1.0.tgz}
     dev: true
 
   /tsutils/3.21.0_typescript@4.4.3:
@@ -3471,6 +3524,10 @@ packages:
     hasBin: true
     dev: true
 
+  /uc.micro/1.0.6:
+    resolution: {integrity: sha1-nEEagCpAmpH8bPdAgbq6NLJEmaw=, tarball: uc.micro/download/uc.micro-1.0.6.tgz}
+    dev: false
+
   /unbox-primitive/1.0.1:
     resolution: {integrity: sha1-CF4hViXsMWJXTciFmr7nilmxRHE=, tarball: unbox-primitive/download/unbox-primitive-1.0.1.tgz}
     dependencies:
@@ -3499,6 +3556,11 @@ packages:
   /util-deprecate/1.0.2:
     resolution: {integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=}
     dev: true
+
+  /uuid/8.3.2:
+    resolution: {integrity: sha1-gNW1ztJxu5r2xEXyGhoExgbO++I=, tarball: uuid/download/uuid-8.3.2.tgz}
+    hasBin: true
+    dev: false
 
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
