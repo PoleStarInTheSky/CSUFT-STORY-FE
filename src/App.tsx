@@ -6,10 +6,11 @@ import Write from './pages/Write'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Detail from './pages/Detail'
+import Settings from './pages/Settings'
 function App() {
   return (
     <div>
-      <div className="dark:bg-gray-900 dark:text-white h-screen w-screen overflow-auto flex flex-col">
+      <div className="dark:bg-gray-900 dark:text-white h-screen w-screen overflow-y-auto overflow-x-hidden flex flex-col ">
         <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />}></Route>
@@ -20,6 +21,7 @@ function App() {
             <Route path="" element={<Write />} />
           </Route>
           <Route path="/detail" element={<Detail />}></Route>
+          <Route path="/settings" element={<Settings />}></Route>
         </Routes>
       </div>
     </div>

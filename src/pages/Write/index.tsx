@@ -9,6 +9,7 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import { useAuth } from '../../context/authContext'
+import DropUpload from '../../components/DropUpload'
 import useAsync from '../../utils/hooks/useAsync'
 
 // 故事的两种类型， 分为草稿和正式
@@ -140,37 +141,12 @@ export default function Write() {
         .catch(reject)
     })
   }
-  //储存头图文件
-  const [headerFile, setHeaderFile] = useState<File | null>(null)
-  //处理头图上传的函数,加载完再返回
-  const handleHeaderFile = useCallback(() => {
-    return new Promise((resolve, reject) => {
-      const i = new Image()
-      handleUploadImg(headerFile as File).then((res) => {
-        i.src = res
-        i.onload = () => resolve(res)
-        i.onerror = reject
-      })
-    })
-  }, [headerFile])
-  //用useAsync来管理上传头图的状态
-  const {
-    status: headerStatus,
-    value: headerValue,
-    execute: headerExcute,
-  } = useAsync(handleHeaderFile, false)
-
-  //从根源上说 ， 只要头图文件发送变化就执行上传函数
-  useEffect(() => {
-    if (headerFile) headerExcute()
-  }, [headerFile, headerExcute])
-  //头图上传成功，更改本地string
-  useEffect(() => {
-    if (typeof headerValue === 'string') setHeaderImg(headerValue)
-  }, [headerValue])
-  //获取头图区域的input按钮
-  const $input = useRef<HTMLInputElement>(null)
+  //头图上传成功时调用
+  const handleHeaderSuccess = useCallback((url: string) => {
+    setHeaderImg(url)
+  }, [])
   const [show, setShow] = useState(false)
+  const [tags, setTags] = useState('')
   return (
     <>
       <div className="pt-2 w-screen flex-1">
@@ -179,53 +155,11 @@ export default function Write() {
           onSubmit={handleSubmit}
         >
           <div className="w-full flex items-center flex-col justify-center">
-            {/*头图*/}
-            <div
-              className="mb-2"
-              onClick={() => $input.current?.click()}
-              onDrop={(e) => {
-                e.preventDefault()
-                setHeaderFile(e.dataTransfer.files[0])
-              }}
-              onDragOver={(e) => {
-                e.preventDefault()
-              }}
-              onDragLeave={(e) => {
-                e.preventDefault()
-              }}
-            >
-              <div
-                className={`w-7/10screen h-40 flex items-center justify-center duration-300 ${
-                  headerStatus === 'idle'
-                    ? 'border-dashed border-2 border-gray-300  shadow-md rounded-md'
-                    : ''
-                } `}
-              >
-                {headerStatus === 'idle' && (
-                  <div className="text-gray-500">请点击或拖拽上传你的图片</div>
-                )}
-                {headerStatus === 'pending' && (
-                  <div className="animate-pulse bg-gray-300 h-full w-full rounded-md"></div>
-                )}
-                {headerStatus === 'success' && (
-                  <img
-                    className="w-7/10screen h-40 object-cover animate-appear-defalut rounded-md"
-                    src={headerValue as string}
-                    alt="头图"
-                  />
-                )}
-                <input
-                  type="file"
-                  className="hidden"
-                  accept="image/*"
-                  ref={$input}
-                  onChange={(e) => {
-                    if (e.target.files) setHeaderFile(e.target.files[0])
-                  }}
-                />
-              </div>
-            </div>
-
+            {/*头图组件*/}
+            <DropUpload
+              className="mb-2 w-7/10screen h-40"
+              onSuccess={handleHeaderSuccess}
+            />
             {/*标题*/}
             <input
               type="text"
@@ -246,12 +180,19 @@ export default function Write() {
               <input
                 placeholder="请输入标签"
                 className={`${
-                  show ? 'opacity-100' : 'opacity-0'
-                } absolute resize-none border-none w-full placeholder-gray-500 font-semibold  outline-none text-lg`}
+                  show || !tags ? 'opacity-100' : 'opacity-0'
+                } absolute resize-none border-none w-full placeholder-gray-500  font-semibold  outline-none text-lg`}
                 autoFocus={false}
-                onChange={handleOnchange}
+                onChange={(e) => {
+                  setTags(e.target.value)
+                }}
                 onFocus={() => setShow(true)}
-                onBlur={() => setShow(false)}
+                onBlur={(e) => {
+                  setShow(false)
+                  //去除多余空格
+                  e.target.value = tags.replace(/\s+/g, ' ')
+                  setTags(e.target.value)
+                }}
                 onCompositionStart={debounce(() => {
                   lock = true
                 })}
@@ -263,10 +204,10 @@ export default function Write() {
               {/**pointer-events-none 取消了自身的所有点击事件 */}
               <div
                 className={`${
-                  show ? 'invisible' : 'visible'
-                } text-lg font-semibold absolute pointer-events-none`}
+                  !show && tags !== '' ? 'opacity-100' : 'opacity-0'
+                }  text-lg font-semibold absolute pointer-events-none`}
               >
-                {'#文章 #我爱 #哈哈 #再见'
+                {tags
                   .match(/(^|\s)(#[\u4e00-\u9fa5a-z\d-]+)/gi)
                   ?.map((item) => (
                     <span className="text-primary-default">{item}</span>
@@ -292,7 +233,7 @@ export default function Write() {
           </div>
           <div className="w-full flex-1">
             <MdEditor
-              style={{ height: '100%', maxWidth: '100%' }}
+              style={{ height: '100%', width: '100%' }}
               renderHTML={(text) => mdParser.render(text)}
               onChange={(e) => setBody(e.text)}
               placeholder={`书写你的林大故事...\n\n提示:可以点击工具栏最右侧切换全屏编辑`}
@@ -301,7 +242,7 @@ export default function Write() {
           </div>
 
           <div className="flex flex-col md:flex-row w-full mt-1 items-center justify-center md:justify-around">
-            <div className="mb:2 md:mb-0">哈哈哈哈啊哈哈</div>
+            <div className="mb:2 md:mb-0 text-gray-400">已保存</div>
             <button
               type="submit"
               className="disabled:opacity-50 disabled:cursor-default cursor-pointer inline-block text-center text-white tracking-wider font-bold w-full md:w-1/6 px-1 py-2 rounded-2xl bg-gradient-to-r from-primary-deep to-primary-shallower"
