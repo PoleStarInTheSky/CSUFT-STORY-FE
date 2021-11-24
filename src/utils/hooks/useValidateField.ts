@@ -16,7 +16,7 @@ type StrategyReturn = PassReturn | ErrorReturn
 //策略函数的类型
 export type Strategy = (field: string) => StrategyReturn
 //field 表示该输入框目前的值
-//建议传入一个被useCallback包裹的函数，以免 hook 重复执行
+//传入 闭包函数 或者 callBack 包裹的形式，避免重复执行
 export default function useValidateField(field: string, strategy: Strategy) {
   //idle表示没有输入的状态 即字段为空 设置这个状态可以更细颗粒度地操作渲染等
   const [status, setStatus] = useState<ValidateStatus>('idle')

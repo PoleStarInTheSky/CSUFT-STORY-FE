@@ -23,7 +23,7 @@ export default function Nav() {
             偶遇
           </li>
           <li className="cursor-pointer hover:text-primary-default duration-300 select-none">
-            设置
+            <Link to="/settings">设置</Link>
           </li>
           <li className="cursor-pointer hover:text-primary-default duration-300 select-none">
             登出

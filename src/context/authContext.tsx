@@ -9,13 +9,13 @@ export interface AuthForm {
 }
 //服务端中返回的用户信息
 export interface UserResponse {
-  id: string
+  _id: string
   account: string
   gender: string
-  avatar: string //头像Url
+  avatarUrl: string //头像Url
   desc: string //个人描述
   token: string
-  banner: string //头图
+  bannerUrl: string //头图
 }
 //Context中的用户信息
 //去除了 token 属性 然后把所有属性设为可选的
@@ -52,8 +52,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         .then((res) => {
           //得到结果，把token存在本地
           localStorage.setItem(jwtTokenname, res.data.token)
-          const { id, account, gender, avatar, desc } = res.data
-          setUser({ id, account, gender, avatar, desc, status: 'login' })
+          const { _id, account, gender, avatarUrl, desc } = res.data
+          setUser({ _id, account, gender, avatarUrl, desc, status: 'login' })
           resolve()
         })
         .catch((error) => {
@@ -83,8 +83,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         .then((res) => {
           //得到结果，把token存在本地
           localStorage.setItem(jwtTokenname, res.data.token)
-          const { id, account, gender, avatar, desc } = res.data
-          setUser({ id, account, gender, avatar, desc, status: 'login' })
+          const { _id, account, gender, avatarUrl, desc } = res.data
+          setUser({ _id, account, gender, avatarUrl, desc, status: 'login' })
           resolve()
         })
         .catch((error) => {
@@ -109,8 +109,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       axios
         .get<UserResponse>(meApi, { headers })
         .then((res) => {
-          const { id, account, gender, avatar, desc } = res.data
-          setUser({ id, account, gender, avatar, desc, status: 'login' })
+          const { _id, account, gender, avatarUrl, desc } = res.data
+          setUser({ _id, account, gender, avatarUrl, desc, status: 'login' })
         })
         .catch((error) => {
           //status code在 2xx 字段之外

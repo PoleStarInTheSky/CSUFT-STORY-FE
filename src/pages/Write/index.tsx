@@ -89,7 +89,7 @@ export default function Write() {
           title,
           desc,
           header_img: headerImg,
-          author: user.id as string,
+          author: user._id as string,
           date_updated: new Date().toISOString(),
           type: 'draft',
         }

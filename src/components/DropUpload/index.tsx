@@ -5,9 +5,13 @@ import axios from 'axios'
 export default function DropUpload({
   className,
   onSuccess,
+  placeholder = '请点击或拖拽上传你的图片',
+  defaultUrl = '',
 }: {
   className: string
   onSuccess: (url: string) => void
+  placeholder?: string
+  defaultUrl?: string
 }) {
   //文章中上传图片时调用
   const handleUploadImg: (file: File) => Promise<string> = (file) => {
@@ -75,13 +79,20 @@ export default function DropUpload({
     >
       <div
         className={`w-full h-full flex items-center justify-center duration-300 ${
-          headerStatus === 'idle'
+          headerStatus === 'idle' && !defaultUrl
             ? 'border-dashed border-2 border-gray-300  shadow-md rounded-md'
             : ''
         } `}
       >
-        {headerStatus === 'idle' && (
-          <div className="text-gray-500">请点击或拖拽上传你的图片</div>
+        {headerStatus === 'idle' && !defaultUrl && (
+          <div className="text-gray-500">{placeholder}</div>
+        )}
+        {headerStatus === 'idle' && defaultUrl && (
+          <img
+            className="w-full h-full object-cover animate-appear-defalut rounded-md"
+            src={defaultUrl}
+            alt="头图"
+          />
         )}
         {headerStatus === 'pending' && (
           <div className="animate-pulse bg-gray-300 h-full w-full rounded-md"></div>
