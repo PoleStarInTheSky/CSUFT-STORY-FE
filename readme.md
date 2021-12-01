@@ -1,21 +1,6 @@
-# Vite React Tailwind Template
-
-This template provide toolchain below:
-
-- Vite
-- React, ReactDOM
-- ESLint
-- Prettier
-- Git Hook (Husky, Lint Staged)
-- TailwindCSS 2 (JIT)
-
-# Usage
-
-```sh
-pnpm i
-pnpm dev
-```
-
-# Screenshot
-
-![](https://i.imgur.com/ftvsXYB.png)
+* 完成项目的搭建及整体目录结构的设计。
+* 通过 Hooks 利用 React-Context 实现组件间状态管理。
+* 基于 TailwindCSS 实现了页面的响应式与黑暗模式。
+* 基于 JWT 实现登录鉴权及身份认证。
+* 后端 RESTful 风格的 API 设计。
+* 实现流畅的博客编写体验：文章头图拖拽上传、文章支持 Markdown 语法、文章内容实时保存
